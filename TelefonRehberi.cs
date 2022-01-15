@@ -131,6 +131,7 @@ class KisiYonetimi
         {
             Console.WriteLine("Lütfen numarasını silmek istediğiniz kişinin adını ya da soyadını giriniz: ");
             string input =Console.ReadLine();
+            int durum=0;
             foreach (var item in list)
             {
                 if(item.Isim ==input || item.SoyIsim== input)
@@ -140,28 +141,34 @@ class KisiYonetimi
                    if(cevap=="y")
                    {
                        list.Remove(item);
+                       durum++;
                        break;
                    }else if(cevap=="n")
                    {
                     break;
                    }
                 }
-                else
-                {
+                
+            }
+            if (durum==0)
+            {
+                
                     Console.WriteLine("Aradığınız krtiterlere uygun veri rehberde bulunamadı. Lütfen bir seçim yapınız.");
                     Console.WriteLine("* Silmeyi sonlandırmak için : (1)");
                     Console.WriteLine("* Yeniden denemek için      : (2)");
+                    Console.Write("Yapmak istediğiniz işleme tekabül eden sayıyı giriniz:");
                     int cevap =int.Parse(Console.ReadLine());
                     if(cevap==1)
                     {
                         Console.WriteLine("Silme işlemi sonlandırıldı.");
-                        break;
+                        
                     }else if(cevap==2)
                     {
                         KisiSil(list);
                     }
-                }
+                
             }
+            
 
         }
         public void KisiGuncelle(List<Kisi> list)
