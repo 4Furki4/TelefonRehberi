@@ -1,0 +1,15 @@
+C:\Users\Furkan Cengiz\Desktop\Telefon Rehberi Projesi\obj\Debug\net6.0\Telefon Rehberi Projesi.csproj.AssemblyReference.cache
+C:\Users\Furkan Cengiz\Desktop\Telefon Rehberi Projesi\obj\Debug\net6.0\Telefon Rehberi Projesi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Furkan Cengiz\Desktop\Telefon Rehberi Projesi\obj\Debug\net6.0\Telefon Rehberi Projesi.AssemblyInfoInputs.cache
+C:\Users\Furkan Cengiz\Desktop\Telefon Rehberi Projesi\obj\Debug\net6.0\Telefon Rehberi Projesi.AssemblyInfo.cs
+C:\Users\Furkan Cengiz\Desktop\Telefon Rehberi Projesi\obj\Debug\net6.0\Telefon Rehberi Projesi.csproj.CoreCompileInputs.cache
+C:\Users\Furkan Cengiz\Desktop\Telefon Rehberi Projesi\bin\Debug\net6.0\Telefon Rehberi Projesi.exe
+C:\Users\Furkan Cengiz\Desktop\Telefon Rehberi Projesi\bin\Debug\net6.0\Telefon Rehberi Projesi.deps.json
+C:\Users\Furkan Cengiz\Desktop\Telefon Rehberi Projesi\bin\Debug\net6.0\Telefon Rehberi Projesi.runtimeconfig.json
+C:\Users\Furkan Cengiz\Desktop\Telefon Rehberi Projesi\bin\Debug\net6.0\Telefon Rehberi Projesi.dll
+C:\Users\Furkan Cengiz\Desktop\Telefon Rehberi Projesi\bin\Debug\net6.0\ref\Telefon Rehberi Projesi.dll
+C:\Users\Furkan Cengiz\Desktop\Telefon Rehberi Projesi\bin\Debug\net6.0\Telefon Rehberi Projesi.pdb
+C:\Users\Furkan Cengiz\Desktop\Telefon Rehberi Projesi\obj\Debug\net6.0\Telefon Rehberi Projesi.dll
+C:\Users\Furkan Cengiz\Desktop\Telefon Rehberi Projesi\obj\Debug\net6.0\ref\Telefon Rehberi Projesi.dll
+C:\Users\Furkan Cengiz\Desktop\Telefon Rehberi Projesi\obj\Debug\net6.0\Telefon Rehberi Projesi.pdb
+C:\Users\Furkan Cengiz\Desktop\Telefon Rehberi Projesi\obj\Debug\net6.0\Telefon Rehberi Projesi.genruntimeconfig.cache
