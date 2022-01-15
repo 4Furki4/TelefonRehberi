@@ -40,11 +40,6 @@ switch (islem)
     
 }
 
-
-
-
-
-
 class Kisi{
     public Kisi(string isimGirdisi, string soyIsimGirdisi, string numara)
     {
@@ -86,11 +81,6 @@ class Kisi{
         }
     }
 }
-
-
-
-
-
 
 class KisiYonetimi
 {
@@ -190,7 +180,14 @@ class KisiYonetimi
                 Console.WriteLine("-----------------------------------------------------");
                 
             }
+            Console.WriteLine("Rehber burada sonlanmıştır.");
         } 
+
+
+        Kisi KisiArama(List<Kisi> list)
+        {
+            
+        }
 
 
 }
