@@ -120,6 +120,7 @@ class KisiYonetimi
                    if(cevap=="y")
                    {
                        list.Remove(item);
+                       break;
                    }else if(cevap=="n")
                    {
                     break;
@@ -145,14 +146,51 @@ class KisiYonetimi
         }
         void KisiGuncelle(List<Kisi> list)
         {
+            Console.WriteLine("Lütfen güncellemek istediğiniz numarayı giriniz:");
+            string numara= Console.ReadLine();
+            Console.WriteLine("Lütfen yeni ismi giriniz:");
+            string yeniIsim=Console.ReadLine();
+            Console.WriteLine("Lütfen yeni soyismi giriniz:");
+            string yeniSoyIsim=Console.ReadLine();
+            foreach (var item in list)
+            {
+                if (item.TelNo==numara)
+                {
+                    item.Isim=yeniIsim;
+                    item.SoyIsim=yeniSoyIsim;
+                    Console.WriteLine("Girdiğiniz numaranın bilgileri başarıyla güncellendi.");
+                    break;
+                }else
+                {
+                    Console.WriteLine("Aradığınız krtiterlere uygun veri rehberde bulunamadı. Lütfen bir seçim yapınız:");
+                    Console.WriteLine("* Güncellemeyi sonlandırmak için    : (1)\n* Yeniden denemek için              : (2)");
+                    int islemNo=int.Parse(Console.ReadLine());
+                    if (islemNo==1)
+                    {
+                        break;
+                    }else if(islemNo==2)
+                    {
+                        KisiGuncelle(list);
+                    }
+                }
+            }
+            
                 
 
 
         }
-        /* Kisi KisiAra(Kisi kisi)
+          void KisileriListele(List<Kisi> list) //Rehberdeki kişileri numara-isim-soyisim olarak listeleyen metod
         {
-
-        } */
+            Console.WriteLine("Telefon Rehberi\n**********************************************");
+            foreach (var item in list)
+            {
+                Console.WriteLine($"İsim: {item.Isim}");
+                Console.WriteLine($"Soyisim: {item.SoyIsim}");
+                Console.WriteLine($"Telefon Numarası: {item.TelNo}");
+                Console.WriteLine("-----------------------------------------------------");
+                
+            }
+        } 
 
 
 }
