@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 void TaslakYazıcı()
 {
-Console.WriteLine("Lütfen yapmak istediğiniz işlemi seçiniz :) \n********************************************");
+Console.WriteLine("Lütfen yapmak istediğiniz işlemi seçiniz :) \n*****************************************************");
 Console.WriteLine("(1) Yeni Numara Kaydetmek");
 Console.WriteLine("(2) Varolan Numarayı Silmek");
 Console.WriteLine("(3) Varolan Numarayı Güncelleme");
@@ -23,7 +23,7 @@ catch (System.FormatException)
     Console.WriteLine("Lütfen 1-5 arası bir rakam girdiğinizden emin olunuz.");
     
 }
-if(islem<1 || islem>5)
+if(islem<1 || islem>6)
 {
     Console.WriteLine("Lütfen 1-5 arası bir rakam girdiğinizden emin olunuz.");
 
@@ -57,7 +57,8 @@ switch (islem)
     Secenekler.KisiArama(Rehber);
     break;   
     case 6:
-    KonsolKapatıcı=6;  
+    KonsolKapatıcı=6; 
+    Console.WriteLine("Console'dan başarılı bir şekilde çıkış yapıldı, yine bekleriz :=)"); 
     break; 
 }
 if(KonsolKapatıcı!=6)
@@ -200,7 +201,7 @@ class KisiYonetimi
         }
           public void KisileriListele(List<Kisi> list) //Rehberdeki kişileri numara-isim-soyisim olarak listeleyen metod
         {
-            Console.WriteLine("Telefon Rehberi\n**********************************************");
+            Console.WriteLine("Telefon Rehberi\n*****************************************************");
             foreach (var item in list)
             {
                 Console.WriteLine($"İsim: {item.Isim}");
@@ -209,13 +210,13 @@ class KisiYonetimi
                 Console.WriteLine("-----------------------------------------------------");
                 
             }
-            Console.WriteLine("Rehber burada sonlanmıştır.");
+            Console.WriteLine("Rehber burada sonlanmıştır :=)\n*****************************************************");
         } 
 
 
         public void KisiArama(List<Kisi> list)
         {
-            Console.WriteLine("Arama yapmak istediğiniz tipi seçiniz.\n**********************************************\n");
+            Console.WriteLine("Arama yapmak istediğiniz tipi seçiniz.\n*****************************************************\n");
             Console.Write("İsim veya soyisime göre arama yapmak için: (1)\nTelefon numarasına göre arama yapmak için: (2)");
             int islemNo=int.Parse(Console.ReadLine());
             
@@ -223,58 +224,67 @@ class KisiYonetimi
             {
                 Console.Write("Lütfen aramak istediğiniz ismi veya soyismi yazınız:");
                 string input=Console.ReadLine();
+                int durum=0;
                 foreach (var item in list)
                 {
                     if (item.Isim==input || item.SoyIsim==input)
                     {
+                        Console.WriteLine("-----------------------------------------------------");
                         Console.WriteLine($"İsim: {item.Isim}");
                         Console.WriteLine($"Soyisim: {item.SoyIsim}");
                         Console.WriteLine($"Telefon Numarası: {item.TelNo}");
                         Console.WriteLine("-----------------------------------------------------");
-                    }else
-                    {
+                        durum++;
+                    }
+                }
+                if (durum==0)
+                {
+                    
                         Console.WriteLine("Aradığınız isim veya soyismi bulamadık.");
                         Console.WriteLine("İşlemi sonlandırmak için: (1)\n Tekrar arama yapmak için: (2)");
                         int yesOrNo=int.Parse(Console.ReadLine());
                         if (yesOrNo==1)
                         {
-                            break;
+                            
                         }
                         else if(yesOrNo==2)
                         {
                             KisiArama(list);
                         }
-                    }
                     
-                    
-
                 }
             }else if(islemNo==2)
             {
+                int durum2=0;
                 Console.Write("Lütfen aramak istediğiniz telefon numarasını yazınız:");
                 string numara=Console.ReadLine();
                 foreach (var item in list)
                 {
                     if (item.TelNo==numara)
                     {
+                        Console.WriteLine("-----------------------------------------------------");
                         Console.WriteLine($"İsim: {item.Isim}");
                         Console.WriteLine($"Soyisim: {item.SoyIsim}");
                         Console.WriteLine($"Telefon Numarası: {item.TelNo}");
                         Console.WriteLine("-----------------------------------------------------");
-                    }else
-                    {
+                        durum2++;
+                    }
+                }
+                if (durum2==0)
+                {
+                    
                         Console.WriteLine("Aradığınız numarayı bulamadık.");
                         Console.WriteLine("İşlemi sonlandırmak için: (1)\n Tekrar arama yapmak için: (2)");
                         int yesOrNo=int.Parse(Console.ReadLine());
                         if (yesOrNo==1)
                         {
-                            break;
+                            
                         }
                         else if(yesOrNo==2)
                         {
                             KisiArama(list);
                         }
-                    }
+                    
                 }
             }
 
