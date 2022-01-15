@@ -166,34 +166,41 @@ class KisiYonetimi
         }
         public void KisiGuncelle(List<Kisi> list)
         {
-            Console.WriteLine("Lütfen güncellemek istediğiniz numarayı giriniz:");
+            Console.Write("Lütfen güncellemek istediğiniz numarayı giriniz:");
             string numara= Console.ReadLine();
-            Console.WriteLine("Lütfen yeni ismi giriniz:");
+            Console.Write("Lütfen yeni ismi giriniz:");
             string yeniIsim=Console.ReadLine();
-            Console.WriteLine("Lütfen yeni soyismi giriniz:");
+            Console.Write("Lütfen yeni soyismi giriniz:");
             string yeniSoyIsim=Console.ReadLine();
+            int durum=0;
             foreach (var item in list)
             {
                 if (item.TelNo==numara)
                 {
                     item.Isim=yeniIsim;
                     item.SoyIsim=yeniSoyIsim;
-                    Console.WriteLine("Girdiğiniz numaranın bilgileri başarıyla güncellendi.");
+                    Console.WriteLine("Girdiğiniz numaranın bilgileri başarıyla güncellendi.\n");
+                    durum++;
                     break;
-                }else
-                {
+                }
+            }
+            if(durum==0)
+            {
+                
                     Console.WriteLine("Aradığınız krtiterlere uygun veri rehberde bulunamadı. Lütfen bir seçim yapınız:");
-                    Console.WriteLine("* Güncellemeyi sonlandırmak için    : (1)\n* Yeniden denemek için              : (2)");
+                    Console.Write("* Güncellemeyi sonlandırmak için    : (1)\n* Yeniden denemek için              : (2)");
                     int islemNo=int.Parse(Console.ReadLine());
                     if (islemNo==1)
                     {
-                        break;
-                    }else if(islemNo==2)
+
+                    }
+                    else if(islemNo==2)
                     {
                         KisiGuncelle(list);
                     }
-                }
+                
             }
+
             
                 
 
