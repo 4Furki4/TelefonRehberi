@@ -32,7 +32,7 @@ switch (islem)
     {
     case 1:
     Secenekler.KisiYarat(Rehber);
-    KonsolIslemcisi();
+    KonsolIslemcisi(); // KonsolIslemcisi metodunu her birinde islemleri yaptıktan sonra çağırarak mezkur işlem yapıldıktan sonra yeni işlem yapabilmeyi veya rehberi kapatmayı sağladım.
     break;
     case 2:
     Secenekler.KisiSil(Rehber);
@@ -184,29 +184,29 @@ class KisiYonetimi // Rehberdeki kişiler üzerinden yapılan işemleri yöneten
             
 
         }
-        public void KisiGuncelle(List<Kisi> list)
+        public void KisiGuncelle(List<Kisi> list) // Rehber listesindeki kişileri, girilen numaraya göre güncelleyen metot. Numara bulunamazsa tekrar denemeyi veya işlemi sonlandırmayı seçtiriyor.
         {
             Console.Write("Lütfen güncellemek istediğiniz numarayı giriniz:");
             string numara= Console.ReadLine();
-            Console.Write("Lütfen yeni ismi giriniz:");
-            string yeniIsim=Console.ReadLine();
-            Console.Write("Lütfen yeni soyismi giriniz:");
-            string yeniSoyIsim=Console.ReadLine();
-            int durum=0;
-            foreach (var item in list)
+            
+            int durum=0; // bu değişkeni, foreach yapısında numara bulunursa artırıyorum ve böylelikle veri bulunamadı kısmına girmiyorum. Eğer durum artmazsa veri bulunamadı olarak sayılıyor.
+            foreach (var item in list) // Önce listedeki "Kişi"lere ulaşıyoruz.
             {
-                if (item.TelNo==numara)
+                if (item.TelNo==numara) // Bu Kişi nesnelerinin telefon numaraları özelliğine ulaşarak bunun girilen veriyle örtüşüp örtüşmediğini kontrol ediyor, örtüşürse mezkur numaranın bilgilerini güncelliyor.
                 {
-                    item.Isim=yeniIsim;
-                    item.SoyIsim=yeniSoyIsim;
+                    Console.Write("Lütfen yeni ismi giriniz:");
+                    item.Isim=Console.ReadLine();
+                    Console.Write("Lütfen yeni soyismi giriniz:");
+                    item.SoyIsim=Console.ReadLine();
                     Console.WriteLine("Girdiğiniz numaranın bilgileri başarıyla güncellendi.\n");
                     durum++;
                     break;
                 }
             }
-            if(durum==0)
+            if(durum==0) // Foreach döngüsü bittikten sonra verinin bulunamadığı durumu gerçekleştiren yapı.
             {
-                
+                void VeriBulunamadı() // Girinen veri bulunamadığında çalışacak kodları içeren bir metot. Else durumunda tekrardan aynı kodları yazmamak için kodları metoda yazdım. 
+                {
                     Console.WriteLine("Aradığınız krtiterlere uygun veri rehberde bulunamadı. Lütfen bir seçim yapınız:");
                     Console.Write("* Güncellemeyi sonlandırmak için    : (1)\n* Yeniden denemek için              : (2)");
                     int islemNo=int.Parse(Console.ReadLine());
@@ -218,13 +218,17 @@ class KisiYonetimi // Rehberdeki kişiler üzerinden yapılan işemleri yöneten
                     {
                         KisiGuncelle(list);
                     }
-                
+                    else
+                    {
+                        Console.WriteLine("Girdiğiniz veri 1 veya 2 olarak algılanamadı.");
+                        VeriBulunamadı();
+
+                    }
+                }
+                VeriBulunamadı();
+                    
             }
-
             
-                
-
-
         }
           public void KisileriListele(List<Kisi> list) //Rehberdeki kişileri numara-isim-soyisim olarak listeleyen metod
         {
@@ -245,9 +249,10 @@ class KisiYonetimi // Rehberdeki kişiler üzerinden yapılan işemleri yöneten
         {
             Console.WriteLine("Arama yapmak istediğiniz tipi seçiniz.\n*****************************************************\n");
             Console.Write("İsim veya soyisime göre arama yapmak için: (1)\nTelefon numarasına göre arama yapmak için: (2)");
-            int islemNo=int.Parse(Console.ReadLine());
             
-            if(islemNo==1)
+            void Proceccor(int islemNo)
+        {
+                if(islemNo==1)
             {
                 Console.Write("Lütfen aramak istediğiniz ismi veya soyismi yazınız:");
                 string input=Console.ReadLine();
@@ -301,7 +306,7 @@ class KisiYonetimi // Rehberdeki kişiler üzerinden yapılan işemleri yöneten
                 {
                     
                         Console.WriteLine("Aradığınız numarayı bulamadık.");
-                        Console.WriteLine("İşlemi sonlandırmak için: (1)\n Tekrar arama yapmak için: (2)");
+                        Console.WriteLine("İşlemi sonlandırmak için: (1)\nTekrar arama yapmak için: (2)");
                         int yesOrNo=int.Parse(Console.ReadLine());
                         if (yesOrNo==1)
                         {
@@ -313,6 +318,16 @@ class KisiYonetimi // Rehberdeki kişiler üzerinden yapılan işemleri yöneten
                         }
                     
                 }
+            }
+        }
+            if (int.TryParse(Console.ReadLine(), out int Checker) && Checker==1 || Checker==2 )
+            {
+                int islemNo= Checker;
+                Proceccor(islemNo);
+            }else
+            {
+                Console.WriteLine("Girdiğiniz veri 1 veya 2 olarak algılanamadı, lütfen tekrar deneyiniz\n");
+                KisiArama(list);
             }
 
 
