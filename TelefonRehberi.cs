@@ -27,53 +27,34 @@ void KonsolIslemcisi() // Konsoldan alınan girdilere göre işlemleri başlatan
 int islem =0;
 int KonsolKapatıcı=0;
 while(KonsolKapatıcı!=6)
-{
-    if (islem==1)
+{   //İşlemleri konsoldan girilen veriye bağlı olarak başlatan if-else yapısı. sonlarına break yazdım ve bu şekilde sonsuz döngüyü engelledim.
+switch (islem)
     {
-        Secenekler.KisiYarat(Rehber);
-        break;
-    }else if (islem==2)
-    {
-        Secenekler.KisiSil(Rehber);
-        break;
-    }
-    else if (islem==3)
-    {
-        Secenekler.KisiGuncelle(Rehber);
-        break;
-    }
-    else if (islem==4)
-    {
-        Secenekler.KisileriListele(Rehber);
+    case 1:
+    Secenekler.KisiYarat(Rehber);
+    KonsolIslemcisi();
     break;
-    }
-    else if (islem==5)
-    {
-        Secenekler.KisiArama(Rehber);
-    break; 
-    }
-    else if (islem==6)
-    {
-        KonsolKapatıcı=6; 
+    case 2:
+    Secenekler.KisiSil(Rehber);
+    KonsolIslemcisi();
+    break;
+    case 3:
+    Secenekler.KisiGuncelle(Rehber);
+    KonsolIslemcisi();
+    break;
+    case 4:
+    Secenekler.KisileriListele(Rehber);
+    KonsolIslemcisi();
+    break;
+    case 5:
+    Secenekler.KisiArama(Rehber);
+    KonsolIslemcisi();
+    break;   
+    case 6:
+    KonsolKapatıcı=6; 
     Console.WriteLine("Console'dan başarılı bir şekilde çıkış yapıldı, yine bekleriz :=)"); 
     break; 
     }
-    
-    /*switch (islem)
-    {
-    case 1:
-    
-    case 2:
-    
-    case 3:
-    
-    case 4:
-    
-    case 5:
-      
-    case 6:
-    
-    }*/
     
     
 if(islem<1 || islem>6)
