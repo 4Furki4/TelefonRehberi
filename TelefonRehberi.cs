@@ -28,29 +28,53 @@ int islem =0;
 int KonsolKapatıcı=0;
 while(KonsolKapatıcı!=6)
 {
-    switch (islem)
+    if (islem==1)
     {
-    case 1:
-    Secenekler.KisiYarat(Rehber);
+        Secenekler.KisiYarat(Rehber);
+        break;
+    }else if (islem==2)
+    {
+        Secenekler.KisiSil(Rehber);
+        break;
+    }
+    else if (islem==3)
+    {
+        Secenekler.KisiGuncelle(Rehber);
+        break;
+    }
+    else if (islem==4)
+    {
+        Secenekler.KisileriListele(Rehber);
     break;
-    case 2:
-    Secenekler.KisiSil(Rehber);
-    break;
-    case 3:
-    Secenekler.KisiGuncelle(Rehber);
-    break;
-    case 4:
-    Secenekler.KisileriListele(Rehber);
-    break;
-    case 5:
-    Secenekler.KisiArama(Rehber);
-    break;   
-    case 6:
-    KonsolKapatıcı=6; 
+    }
+    else if (islem==5)
+    {
+        Secenekler.KisiArama(Rehber);
+    break; 
+    }
+    else if (islem==6)
+    {
+        KonsolKapatıcı=6; 
     Console.WriteLine("Console'dan başarılı bir şekilde çıkış yapıldı, yine bekleriz :=)"); 
     break; 
     }
-    break;
+    
+    /*switch (islem)
+    {
+    case 1:
+    
+    case 2:
+    
+    case 3:
+    
+    case 4:
+    
+    case 5:
+      
+    case 6:
+    
+    }*/
+    
     
 if(islem<1 || islem>6)
 {
