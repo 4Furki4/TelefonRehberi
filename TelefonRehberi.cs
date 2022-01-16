@@ -22,7 +22,8 @@ List<Kisi> Rehber= new List<Kisi>(); // Rehber içinde kullanacağım listeyi ol
 
            
 
-void KonsolIslemcisi() // Konsoldan alınan girdilere göre işlemleri başlatan veya yanlış girdi alınırsa rehberdeki işlemlerin devam etmesini sağlayan metodum. Yanlış aralıkta veri girilince konsolun çökmemesini sağlıyor.
+void KonsolIslemcisi()  /* Konsoldan alınan girdilere göre işlemleri başlatan veya yanlış girdi alınırsa rehberdeki işlemlerin devam etmesini sağlayan metodum. 
+                        Yanlış aralıkta veri girilince konsolun çökmemesini sağlıyor.*/
 {
 int islem =0;
 int KonsolKapatıcı=0;
@@ -32,7 +33,8 @@ switch (islem)
     {
     case 1:
     Secenekler.KisiYarat(Rehber);
-    KonsolIslemcisi(); // KonsolIslemcisi metodunu her birinde islemleri yaptıktan sonra çağırarak mezkur işlem yapıldıktan sonra yeni işlem yapabilmeyi veya rehberi kapatmayı sağladım.
+    //KonsolIslemcisi metodunu her birinde islemleri yaptıktan sonra çağırarak mezkur işlem yapıldıktan sonra yeni işlem yapabilmeyi veya rehberi kapatmayı sağladım.
+    KonsolIslemcisi();
     break;
     case 2:
     Secenekler.KisiSil(Rehber);
@@ -61,14 +63,15 @@ if(islem<1 || islem>6)
 {
     Console.WriteLine("Lütfen 1-6 arası bir rakam girdiğinizden emin olunuz.\n");
     TaslakYazıcı();
-    if(int.TryParse(Console.ReadLine(), out int TryParsedIslem)) // Konsola girilen verinin istediğimiz tipte (integer) olup olmadığını kontrol ediyor. Söz gelimi bir metin girilirse hem hatayı algılıyor hem mesaj yazdırıyor hem de istenilen işlemi yapma sürecini devam ettiriyorum.
+    if(int.TryParse(Console.ReadLine(), out int TryParsedIslem)) /* Konsola girilen verinin istediğimiz tipte (integer) olup olmadığını kontrol ediyor. 
+                        Söz gelimi bir metin girilirse hem hatayı algılıyor hem mesaj yazdırıyor hem de istenilen işlemi yapma sürecini devam ettiriyorum. */
     {
         islem =TryParsedIslem;
     }else
     {
         Console.WriteLine("Lütfen 1-6 arası rakam girdiğinizden emin olunuz.\n");
         TaslakYazıcı();
-        KonsolIslemcisi();
+        KonsolIslemcisi(); // Tekrardan aynı işlemleri ekrana yazdırıp girdi almak için metodumuzu geri çağırdım.
     }
     
     continue; // sonsuz döngü olmaması için continue yazmak zorundayım.
@@ -77,23 +80,23 @@ if(islem<1 || islem>6)
 }
 
 }
-TaslakYazıcı();
-KonsolIslemcisi(); 
+
+KonsolIslemcisi(); // Yazdığım metodu buraya yazarak konsolda çalışmasını sağlayalım :=)
 
 
 
 
-class Kisi{
+class Kisi{ // Rehberde kişileri nesne olarak tutmak icap ediyor, Kisi adlı sınıfla nesne oluşturabiliriz.
     public Kisi(string isimGirdisi, string soyIsimGirdisi, string numara)
     {
         isim=isimGirdisi;
         soyIsim=soyIsimGirdisi;
         telNo= numara;
     }
-    string isim;
-    string soyIsim;
-    string telNo;  
-    public string Isim 
+    string isim; // Kisi'den oluşan nesnenin isim property'si.
+    string soyIsim; // Kisi'den oluşan nesnenin soyisim property'si.
+    string telNo;  // Kisi'den oluşan nesnenin telefon property'si.
+    public string Isim // burada encapsulation yaptım.
     {
         get
         {
@@ -138,11 +141,12 @@ class KisiYonetimi // Rehberdeki kişiler üzerinden yapılan işemleri yöneten
         Kisi yeniInsan = new Kisi(isim,soyisim,numara);
         rehber.Add(yeniInsan);
     }
-        public void KisiSil(List<Kisi> list) // Konsoldan alınan ismi veya soyismi Rehber listesinde arayıp silen veya bulamayıp mesaj verip tekrardan girdi isteyen kişi silme metodum.
+        // Konsoldan alınan ismi veya soyismi Rehber listesinde arayıp silen veya bulamayıp mesaj verip tekrardan girdi isteyen kişi silme metodum.
+        public void KisiSil(List<Kisi> list) 
         {
             Console.WriteLine("Lütfen numarasını silmek istediğiniz kişinin adını ya da soyadını giriniz: ");
             string input =Console.ReadLine();
-            int durum=0;
+            int durum=0; // bu değişken, girilen verinin isim veya soyisimle örtüşüp örtüşmediği durumu tutar.
             
                 foreach (var item in list)
             {
@@ -153,7 +157,7 @@ class KisiYonetimi // Rehberdeki kişiler üzerinden yapılan işemleri yöneten
                    if(cevap=="y")
                    {
                        list.Remove(item);
-                       durum++;
+                       durum++; // örtüşürse durum'un değeri artar ve alttaki if döngüsüne girmeyiz.
                        break;
                    }else if(cevap=="n")
                    {
@@ -161,7 +165,7 @@ class KisiYonetimi // Rehberdeki kişiler üzerinden yapılan işemleri yöneten
                    }
                 }
                 
-            }
+            } // durum artmazsa-yani girilen veri örtüşmezse- durum değişkeni bu döngüyü çalıştırır.
             if (durum==0)
             {
                 
@@ -176,25 +180,27 @@ class KisiYonetimi // Rehberdeki kişiler üzerinden yapılan işemleri yöneten
                         
                     }else if(cevap==2)
                     {
-                        KisiSil(list);
+                        KisiSil(list); // Tüm işlemleri yeniden başlatmak için metodumuzu çağırıyoruz.
                     }
                 
             }
         
-            
-            
-
         }
-        public void KisiGuncelle(List<Kisi> list) // Rehber listesindeki kişileri, girilen numaraya göre güncelleyen metot. Numara bulunamazsa tekrar denemeyi veya işlemi sonlandırmayı seçtiriyor.
+        public void KisiGuncelle(List<Kisi> list) /* Rehber listesindeki kişileri, girilen numaraya göre güncelleyen metot. 
+                                                  Numara bulunamazsa tekrar denemeyi veya işlemi sonlandırmayı seçtiriyor.*/
         {
             Console.Write("Lütfen güncellemek istediğiniz numarayı giriniz:");
             string numara= Console.ReadLine();
             
-            int durum=0; // bu değişkeni, foreach yapısında numara bulunursa artırıyorum ve böylelikle veri bulunamadı kısmına girmiyorum. Eğer durum artmazsa veri bulunamadı olarak sayılıyor.
+            int durum=0; /* Bu değişkeni, foreach yapısında numara bulunursa artırıyorum ve böylelikle veri bulunamadı kısmına girmiyorum. 
+                         Eğer durum artmazsa veri bulunamadı olarak sayılıyor.*/
             foreach (var item in list) // Önce listedeki "Kişi"lere ulaşıyoruz.
             {
-                if (item.TelNo==numara) // Bu Kişi nesnelerinin telefon numaraları özelliğine ulaşarak bunun girilen veriyle örtüşüp örtüşmediğini kontrol ediyor, örtüşürse mezkur numaranın bilgilerini güncelliyor.
+                //Kişi nesnelerinin telefon numaraları özelliğine ulaşarak bunun girilen veriyle örtüşüp örtüşmediğini kontrol ediyor. 
+                if (item.TelNo==numara) 
                 {
+                //örtüşürse mezkur numaranın bilgilerini güncelliyor.
+
                     Console.Write("Lütfen yeni ismi giriniz:");
                     item.Isim=Console.ReadLine();
                     Console.Write("Lütfen yeni soyismi giriniz:");
@@ -250,8 +256,9 @@ class KisiYonetimi // Rehberdeki kişiler üzerinden yapılan işemleri yöneten
         {
             Console.WriteLine("Arama yapmak istediğiniz tipi seçiniz.\n*****************************************************\n");
             Console.Write("İsim veya soyisime göre arama yapmak için: (1)\nTelefon numarasına göre arama yapmak için: (2)");
+            //Bu metot, yanlış veri girilmesi sonucunda alınacak hatayı mesajla yansıtıp tekrardan veri girilmesini sağlamak için yazıldı. 
             
-            void Proceccor(int islemNo) //Bu metot, yanlış veri girilmesi sonucunda alınacak hatayı mesajla yansıtıp tekrardan veri girilmesini sağlamak için yazıldı. Parametre ise yukardaki 1 veya 2yi tutar.
+            void Proceccor(int islemNo) //Parametre ise yukardaki 1 veya 2yi tutar.
         {
                 if(islemNo==1)
             {
@@ -275,7 +282,7 @@ class KisiYonetimi // Rehberdeki kişiler üzerinden yapılan işemleri yöneten
                     
                         Console.WriteLine("Aradığınız isim veya soyismi bulamadık.");
                         Console.WriteLine("İşlemi sonlandırmak için: (1)\n Tekrar arama yapmak için: (2)");
-                        int yesOrNo=int.Parse(Console.ReadLine());
+                        int yesOrNo=int.Parse(Console.ReadLine()); // Buradaki 1 ve 2, islemNo'daki 1 ve 2den farklıdır.
                         if (yesOrNo==1)
                         {
                             
@@ -321,7 +328,8 @@ class KisiYonetimi // Rehberdeki kişiler üzerinden yapılan işemleri yöneten
                 }
             }
         }
-            if (int.TryParse(Console.ReadLine(), out int Checker) && Checker==1 || Checker==2 ) // girilen veri int'e dönüştürülebilir ve 1 veya 2 olması durumunda işlem gerçekleşecek.
+            // Girilen veri int'e dönüştürülebilir ve 1 veya 2 olması durumunda işlem gerçekleşecek.
+            if (int.TryParse(Console.ReadLine(), out int Checker) && Checker==1 || Checker==2 ) 
             {
                 int islemNo= Checker;
                 Proceccor(islemNo);
@@ -336,3 +344,7 @@ class KisiYonetimi // Rehberdeki kişiler üzerinden yapılan işemleri yöneten
 
 
 }
+
+// Furkan Cengiz tarafından yazılmıştır, okuyup incelediğiniz için müteşekkirim. Geri bildirimlerinize teşneyim, bana Discord'dan ulaşabilirsiniz. Esen kalın 4_4
+
+// Discordum: Furki4_4#9356
