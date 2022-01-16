@@ -137,15 +137,14 @@ class KisiYonetimi // Rehberdeki kişiler üzerinden yapılan işemleri yöneten
         string numara=Console.ReadLine();
         Kisi yeniInsan = new Kisi(isim,soyisim,numara);
         rehber.Add(yeniInsan);
-
-
     }
-        public void KisiSil(List<Kisi> list)
+        public void KisiSil(List<Kisi> list) // Konsoldan alınan ismi veya soyismi Rehber listesinde arayıp silen veya bulamayıp mesaj verip tekrardan girdi isteyen kişi silme metodum.
         {
             Console.WriteLine("Lütfen numarasını silmek istediğiniz kişinin adını ya da soyadını giriniz: ");
             string input =Console.ReadLine();
             int durum=0;
-            foreach (var item in list)
+            
+                foreach (var item in list)
             {
                 if(item.Isim ==input || item.SoyIsim== input)
                 {
@@ -181,6 +180,8 @@ class KisiYonetimi // Rehberdeki kişiler üzerinden yapılan işemleri yöneten
                     }
                 
             }
+        
+            
             
 
         }
@@ -250,7 +251,7 @@ class KisiYonetimi // Rehberdeki kişiler üzerinden yapılan işemleri yöneten
             Console.WriteLine("Arama yapmak istediğiniz tipi seçiniz.\n*****************************************************\n");
             Console.Write("İsim veya soyisime göre arama yapmak için: (1)\nTelefon numarasına göre arama yapmak için: (2)");
             
-            void Proceccor(int islemNo)
+            void Proceccor(int islemNo) //Bu metot, yanlış veri girilmesi sonucunda alınacak hatayı mesajla yansıtıp tekrardan veri girilmesini sağlamak için yazıldı. Parametre ise yukardaki 1 veya 2yi tutar.
         {
                 if(islemNo==1)
             {
@@ -320,11 +321,11 @@ class KisiYonetimi // Rehberdeki kişiler üzerinden yapılan işemleri yöneten
                 }
             }
         }
-            if (int.TryParse(Console.ReadLine(), out int Checker) && Checker==1 || Checker==2 )
+            if (int.TryParse(Console.ReadLine(), out int Checker) && Checker==1 || Checker==2 ) // girilen veri int'e dönüştürülebilir ve 1 veya 2 olması durumunda işlem gerçekleşecek.
             {
                 int islemNo= Checker;
                 Proceccor(islemNo);
-            }else
+            }else // girilen veri int değilse veya 1-2 dışında bir sayıysa mesaj yansıtıp KisiArama metodunu çalıştırarak tekrardan veri almayı sağlayacak.
             {
                 Console.WriteLine("Girdiğiniz veri 1 veya 2 olarak algılanamadı, lütfen tekrar deneyiniz\n");
                 KisiArama(list);
