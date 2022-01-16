@@ -1,7 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.Collections;
 using System.Collections.Generic;
-void TaslakYazıcı()
+void TaslakYazıcı() // Yapılacak işlemleri tekrar tekrar yazmaktan kurtaracak metot.
 {
 Console.WriteLine("Lütfen yapmak istediğiniz işlemi seçiniz :) \n*****************************************************");
 Console.WriteLine("(1) Yeni Numara Kaydetmek");
@@ -11,36 +11,25 @@ Console.WriteLine("(4) Rehberi Listelemek");
 Console.WriteLine("(5) Rehberde Arama Yapmak");
 Console.WriteLine("(6) Konsolu Kapatmak");
 }
-TaslakYazıcı();
-
-int islem =0;
-try
-{
-     islem = int.Parse(Console.ReadLine());
-}
-catch (System.FormatException)
-{
-    Console.WriteLine("Lütfen 1-5 arası bir rakam girdiğinizden emin olunuz.");
-    
-}
-if(islem<1 || islem>6)
-{
-    Console.WriteLine("Lütfen 1-5 arası bir rakam girdiğinizden emin olunuz.");
-
-}
 KisiYonetimi Secenekler = new KisiYonetimi();
 
-List<Kisi> Rehber= new List<Kisi>(); //5 kişi atandı.
+List<Kisi> Rehber= new List<Kisi>(); // Rehber içinde kullanacağım listeyi oluşturdum ve projede söylenildiği gibi varsayılan 5 kişi atadım.
            Rehber.Add(new Kisi("Furkan","Cengiz","5071707878"));
            Rehber.Add(new Kisi("Semiha","Kansız","5354441454"));
            Rehber.Add(new Kisi("Umut","Tavşan","5132313113"));
            Rehber.Add(new Kisi("Esat","Cengiz","0555553681"));
            Rehber.Add(new Kisi("Aybüke", "Akçelik","5052604416"));
-int KonsolKapatıcı=0;           
+
+           
+
+void KonsolIslemcisi() // Konsoldan alınan girdilere göre işlemleri başlatan veya yanlış girdi alınırsa rehberdeki işlemlerin devam etmesini sağlayan metodum. Yanlış aralıkta veri girilince konsolun çökmemesini sağlıyor.
+{
+int islem =0;
+int KonsolKapatıcı=0;
 while(KonsolKapatıcı!=6)
 {
-switch (islem)
-{
+    switch (islem)
+    {
     case 1:
     Secenekler.KisiYarat(Rehber);
     break;
@@ -60,14 +49,33 @@ switch (islem)
     KonsolKapatıcı=6; 
     Console.WriteLine("Console'dan başarılı bir şekilde çıkış yapıldı, yine bekleriz :=)"); 
     break; 
-}
-if(KonsolKapatıcı!=6)
+    }
+    break;
+    
+if(islem<1 || islem>6)
 {
-TaslakYazıcı();
-islem= int.Parse(Console.ReadLine());
+    Console.WriteLine("Lütfen 1-6 arası bir rakam girdiğinizden emin olunuz.\n");
+    TaslakYazıcı();
+    if(int.TryParse(Console.ReadLine(), out int TryParsedIslem)) // Konsola girilen verinin istediğimiz tipte (integer) olup olmadığını kontrol ediyor. Söz gelimi bir metin girilirse hem hatayı algılıyor hem mesaj yazdırıyor hem de istenilen işlemi yapma sürecini devam ettiriyorum.
+    {
+        islem =TryParsedIslem;
+    }else
+    {
+        Console.WriteLine("Lütfen 1-6 arası rakam girdiğinizden emin olunuz.\n");
+        TaslakYazıcı();
+        KonsolIslemcisi();
+    }
+    
+    continue; // sonsuz döngü olmaması için continue yazmak zorundayım.
+
+}
 }
 
 }
+TaslakYazıcı();
+KonsolIslemcisi(); 
+
+
 
 
 class Kisi{
@@ -112,9 +120,9 @@ class Kisi{
     }
 }
 
-class KisiYonetimi
+class KisiYonetimi // Rehberdeki kişiler üzerinden yapılan işemleri yöneten sınıf, içerisinde TaslakYazıcı'da yazdığım işlemlerin metotlarını içeriyor.
 {
-    public void KisiYarat(List<Kisi> rehber)
+    public void KisiYarat(List<Kisi> rehber) // Yeni kişi yaratan metot, yarattığı kişileri Rehber listesine ekler.
     {
         Console.Write("Lütfen isim giriniz              :");
         string isim=Console.ReadLine();
